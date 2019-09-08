@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Employee Details</title>
+</head>
+<body>
+<div align="center">
+    <h1>Employee List</h1>
+    <input type="button" id="newEmployeeId" value="Create New Employee" >
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Branch</th>
+                <th>Phone</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${listEmployees}">
+            	<td th:text="${employee.id}">Product ID</td>
+                <td th:text="${employee.name}">Name</td>
+                <td th:text="${employee.branch}">Branch</td>
+                <td th:text="${employee.phone}">Phone</td>
+                <td th:text="${employee.salary}">Salary</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="newEmployee" align="center">
+		<h1>Create New Employee</h1>
+		<br />
+		<form action="#" th:action="@{http://localhost:8080/save}" th:object="${employee}"
+			method="post">
+
+			<table border="0" cellpadding="10">
+				<tr>
+					<td>Employee Name:</td>
+					<td><input type="text" th:field="*{name}" /></td>
+				</tr>
+				<tr>
+					<td>Branch:</td>
+					<td><input type="text" th:field="*{branch}" /></td>
+				</tr>
+				<tr>
+					<td>Phone:</td>
+					<td><input type="text" th:field="*{phone}" /></td>
+				</tr>
+				<tr>
+					<td>Salary:</td>
+					<td><input type="text" th:field="*{salary}" /></td>
+				</tr>								
+				<tr>
+					<td colspan="2"><button type="submit">Save</button> </td>
+				</tr>
+			</table>
+		</form>
+	</div> 
+</body>
+</html>
